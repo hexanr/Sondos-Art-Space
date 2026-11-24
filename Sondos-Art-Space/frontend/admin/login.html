@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sondos Admin — تسجيل الدخول</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+    :root{
+      --bg:#F7F4EF;--bg2:#fff;--text:#0D0D0D;--sec:#6B6860;
+      --border:#E4E0D8;--pink:#E91E8C;--yellow:#F5A623;
+      --shadow:0 8px 40px rgba(0,0,0,.10);
+    }
+    [data-theme="dark"]{
+      --bg:#0E0E0E;--bg2:#1A1A1A;--text:#F2EFE8;--sec:#9A9690;
+      --border:#2A2A2A;--shadow:0 8px 40px rgba(0,0,0,.4);
+    }
+    body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);
+      min-height:100vh;display:flex;align-items:center;justify-content:center;
+      transition:background .3s,color .3s;}
+    .login-wrap{width:100%;max-width:420px;padding:20px;}
+    .login-card{background:var(--bg2);border:1px solid var(--border);
+      border-radius:24px;padding:48px 40px;box-shadow:var(--shadow);}
+    .login-logo{text-align:center;margin-bottom:32px;}
+    .login-logo svg{width:60px;height:60px;}
+    .login-logo h1{font-size:22px;font-weight:900;letter-spacing:2px;margin-top:8px;}
+    .login-logo p{font-size:13px;color:var(--sec);margin-top:4px;}
+    .form-group{margin-bottom:20px;}
+    .form-group label{display:block;font-size:12px;font-weight:700;
+      letter-spacing:1px;color:var(--sec);margin-bottom:8px;}
+    .form-group input{width:100%;padding:13px 16px;
+      background:var(--bg);border:1.5px solid var(--border);
+      border-radius:10px;font-size:15px;font-family:inherit;
+      color:var(--text);outline:none;transition:border-color .2s,box-shadow .2s;}
+    .form-group input:focus{border-color:var(--pink);box-shadow:0 0 0 3px rgba(233,30,140,.1);}
+    .btn-login{width:100%;padding:15px;background:var(--pink);color:#fff;
+      border:none;border-radius:30px;font-size:16px;font-weight:700;
+      font-family:inherit;cursor:pointer;margin-top:8px;
+      transition:opacity .2s,transform .15s;}
+    .btn-login:hover{opacity:.9;transform:translateY(-2px);}
+    .btn-login:disabled{opacity:.6;cursor:not-allowed;transform:none;}
+    .error-msg{background:#fdecea;color:#c0392b;border:1px solid #f5b7b1;
+      border-radius:8px;padding:10px 16px;font-size:13px;margin-top:12px;
+      display:none;text-align:center;}
+    .error-msg.show{display:block;}
+    .theme-btn{position:absolute;top:20px;left:20px;
+      width:40px;height:40px;border-radius:50%;
+      background:var(--bg2);border:1px solid var(--border);
+      cursor:pointer;color:var(--sec);
+      display:flex;align-items:center;justify-content:center;}
+    [data-theme="light"] .icon-moon{display:none;}
+    [data-theme="dark"]  .icon-sun{display:none;}
+  </style>
+</head>
+<body>
+  <button class="theme-btn" onclick="toggleTheme()">
+    <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/>
+      <line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/>
+      <line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    </svg>
+    <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+    </svg>
+  </button>
+
+  <div class="login-wrap">
+    <div class="login-card">
+      <div class="login-logo">
+       <img src="../images/logo.png" alt="Sondos Art Space"
+     style="width:100px; height:100px; object-fit:contain;"/>
+        <h1>SONDOS ADMIN</h1>
+        <p>لوحة التحكم</p>
+      </div>
+      <form id="login-form">
+        <div class="form-group">
+          <label>اسم المستخدم</label>
+          <input type="text" id="username" placeholder="sondos" autocomplete="username"/>
+        </div>
+        <div class="form-group">
+          <label>كلمة المرور</label>
+          <input type="password" id="password" placeholder="••••••••" autocomplete="current-password"/>
+        </div>
+        <button type="submit" class="btn-login" id="login-btn">دخول</button>
+        <div class="error-msg" id="error-msg">اسم المستخدم أو كلمة المرور غلط</div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const API_BASE = 'http://localhost:8080/Sondos-Art-Space/backend/api';
+    let theme = localStorage.getItem('admin-theme') || 'light';
+    document.documentElement.setAttribute('data-theme', theme);
+
+    function toggleTheme(){
+      theme = theme === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('admin-theme', theme);
+    }
+
+    if(localStorage.getItem('admin-token')){
+      window.location.href = 'dashboard.html';
+    }
+
+    document.getElementById('login-form').addEventListener('submit', async function(e){
+      e.preventDefault();
+      const btn = document.getElementById('login-btn');
+      const err = document.getElementById('error-msg');
+      const u = document.getElementById('username').value.trim();
+      const p = document.getElementById('password').value;
+      if(!u || !p){ err.textContent='يرجى تعبئة جميع الحقول'; err.classList.add('show'); return; }
+      btn.disabled = true; btn.textContent = 'جاري الدخول...'; err.classList.remove('show');
+      try{
+        const res = await fetch(`${API}/auth/login`, {
+          method:'POST', headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({username:u, password:p})
+        });
+        const json = await res.json();
+        if(json.success){
+          localStorage.setItem('admin-token', json.token);
+          localStorage.setItem('admin-user', JSON.stringify(json.user));
+          window.location.href = 'dashboard.html';
+        } else {
+          err.textContent = json.message || 'بيانات غير صحيحة';
+          err.classList.add('show');
+        }
+      } catch {
+        err.textContent = 'تعذر الاتصال بالخادم';
+        err.classList.add('show');
+      } finally { btn.disabled=false; btn.textContent='دخول'; }
+    });
+  </script>
+</body>
+</html>

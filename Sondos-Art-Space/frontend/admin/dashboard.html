@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sondos Admin — لوحة التحكم</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="admin.css"/>
+</head>
+<body>
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+   <img src="../images/logo.png" alt="Sondos Art Space" style="width:90px; height:90px; object-fit:contain;"/>
+    <div>
+      <div class="sb-brand">SONDOS</div>
+      <div class="sb-sub">Admin Panel</div>
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-section-label">الرئيسية</div>
+    <a class="nav-item active" data-page="overview" onclick="showPage('overview',this)">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      نظرة عامة
+    </a>
+    <div class="nav-section-label">المحتوى</div>
+    <a class="nav-item" data-page="portfolio" onclick="showPage('portfolio',this)">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+      الأعمال
+      <span class="nav-badge" id="badge-portfolio">0</span>
+    </a>
+    <a class="nav-item" data-page="services" onclick="showPage('services',this)">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01z"/></svg>
+      الخدمات
+    </a>
+    <a class="nav-item" data-page="messages" onclick="showPage('messages',this)">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      الرسائل
+      <span class="nav-badge pink" id="badge-messages">0</span>
+    </a>
+    <div class="nav-section-label">الإعدادات</div>
+    <a class="nav-item" data-page="settings" onclick="showPage('settings',this)">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      الإعدادات
+    </a>
+  </nav>
+
+  <div class="sidebar-footer">
+    <div class="user-info">
+      <div class="user-av">S</div>
+      <div>
+        <div class="user-name" id="admin-name">سندس</div>
+        <div class="user-role">مدير النظام</div>
+      </div>
+    </div>
+    <button class="logout-btn" onclick="logout()" title="تسجيل خروج">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+    </button>
+  </div>
+</aside>
+
+<div class="main-wrap">
+  <header class="topbar">
+    <div class="topbar-right">
+      <button class="sidebar-toggle" onclick="toggleSidebar()">
+        <span></span><span></span><span></span>
+      </button>
+      <h2 class="page-title" id="page-title">نظرة عامة</h2>
+    </div>
+    <div class="topbar-left">
+      <button class="tb-btn" onclick="toggleTheme()">
+        <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <a href="http://localhost:8080/Sondos-Art-Space/frontend/index.html" class="tb-btn" target="_blank" title="عرض الموقع">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      </a>
+    </div>
+  </header>
+
+  <div class="content">
+
+    <!-- Overview -->
+    <div class="page active" id="page-overview">
+      <div class="stats-grid" id="stats-grid">
+        <div class="stat-card">
+          <div class="sc-icon pink"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
+          <div class="sc-info"><div class="sc-label">إجمالي الأعمال</div><div class="sc-num" id="stat-portfolio">—</div></div>
+        </div>
+        <div class="stat-card">
+          <div class="sc-icon yellow"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+          <div class="sc-info"><div class="sc-label">رسائل جديدة</div><div class="sc-num" id="stat-messages">—</div></div>
+        </div>
+        <div class="stat-card">
+          <div class="sc-icon green"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01z"/></svg></div>
+          <div class="sc-info"><div class="sc-label">الخدمات</div><div class="sc-num" id="stat-services">—</div></div>
+        </div>
+        <div class="stat-card">
+          <div class="sc-icon blue"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/></svg></div>
+          <div class="sc-info"><div class="sc-label">سنوات الخبرة</div><div class="sc-num">6+</div></div>
+        </div>
+      </div>
+      <div class="card" style="margin-top:28px;">
+        <div class="card-head">
+          <h3>آخر الرسائل</h3>
+          <button class="btn-sm" onclick="showPage('messages', document.querySelector('[data-page=messages]'))">عرض الكل</button>
+        </div>
+        <div id="recent-messages"><div class="loading-row"></div><div class="loading-row"></div><div class="loading-row"></div></div>
+      </div>
+      <div class="card" style="margin-top:20px;">
+        <div class="card-head">
+          <h3>آخر الأعمال</h3>
+          <button class="btn-sm" onclick="showPage('portfolio', document.querySelector('[data-page=portfolio]'))">عرض الكل</button>
+        </div>
+        <div id="recent-portfolio"><div class="loading-row"></div><div class="loading-row"></div></div>
+      </div>
+    </div>
+
+    <!-- Portfolio -->
+    <div class="page" id="page-portfolio">
+      <div class="page-actions">
+        <button class="btn-primary" onclick="openModal('add-portfolio')">+ إضافة عمل جديد</button>
+      </div>
+      <div class="card">
+        <div class="card-head">
+          <h3>الأعمال</h3>
+          <input type="text" class="search-input" placeholder="بحث..." oninput="searchPortfolio(this.value)"/>
+        </div>
+        <div id="portfolio-table"><div class="loading-row"></div><div class="loading-row"></div><div class="loading-row"></div></div>
+      </div>
+    </div>
+
+    <!-- Services -->
+    <div class="page" id="page-services">
+      <div class="card">
+        <div class="card-head"><h3>الخدمات المتاحة</h3></div>
+        <div id="services-table"><div class="loading-row"></div><div class="loading-row"></div></div>
+      </div>
+    </div>
+
+    <!-- Messages -->
+    <div class="page" id="page-messages">
+      <div class="card">
+        <div class="card-head">
+          <h3>رسائل التواصل</h3>
+          <div class="filter-tabs">
+            <button class="ftab active" onclick="filterMessages('all',this)">الكل</button>
+            <button class="ftab" onclick="filterMessages('unread',this)">غير مقروءة</button>
+          </div>
+        </div>
+        <div id="messages-table"><div class="loading-row"></div><div class="loading-row"></div><div class="loading-row"></div></div>
+      </div>
+    </div>
+
+    <!-- Settings -->
+    <div class="page" id="page-settings">
+      <div class="settings-grid">
+        <div class="card">
+          <div class="card-head"><h3>معلومات الموقع</h3></div>
+          <form id="settings-form" class="settings-form">
+            <div class="form-group"><label>اسم صاحبة الموقع</label><input type="text" id="s-owner" placeholder="سندس محمد"/></div>
+            <div class="form-group"><label>البريد الإلكتروني</label><input type="email" id="s-email" placeholder="admin@example.com"/></div>
+            <div class="form-group"><label>إنستغرام</label><input type="text" id="s-instagram" placeholder="@sondos_art_space"/></div>
+            <div class="form-group"><label>إكس (تويتر)</label><input type="text" id="s-twitter" placeholder="@sondaiartspace"/></div>
+            <div class="form-group"><label>لينكدإن</label><input type="text" id="s-linkedin" placeholder="Sondos Mohamed"/></div>
+            <div class="form-group"><label>بيهانس</label><input type="text" id="s-behance" placeholder="Sondos Art Space"/></div>
+            <div class="form-group" style="grid-column:1/-1"><label>نص "عني"</label><textarea id="s-about" rows="4"></textarea></div>
+            <div style="grid-column:1/-1"><button type="submit" class="btn-primary">حفظ الإعدادات</button></div>
+          </form>
+          <div id="settings-feedback" class="feedback-msg"></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>تغيير كلمة المرور</h3></div>
+          <form id="password-form" class="settings-form" style="grid-template-columns:1fr;">
+            <div class="form-group"><label>كلمة المرور الحالية</label><input type="password" id="p-current"/></div>
+            <div class="form-group"><label>كلمة المرور الجديدة</label><input type="password" id="p-new"/></div>
+            <div class="form-group"><label>تأكيد كلمة المرور</label><input type="password" id="p-confirm"/></div>
+            <div><button type="submit" class="btn-primary">تغيير</button></div>
+          </form>
+          <div id="password-feedback" class="feedback-msg"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- MODAL: Add Portfolio -->
+<div class="modal-overlay" id="modal-add-portfolio" onclick="closeModalOut(event)">
+  <div class="modal">
+    <div class="modal-head">
+      <h3>إضافة عمل جديد</h3>
+      <button class="modal-close" onclick="closeModal('add-portfolio')">✕</button>
+    </div>
+    <form id="add-portfolio-form" class="settings-form">
+      <div class="form-group"><label>العنوان (EN) *</label><input type="text" id="p-title" required/></div>
+      <div class="form-group"><label>العنوان (AR)</label><input type="text" id="p-title-ar"/></div>
+      <div class="form-group"><label>الكاتيقوري</label>
+        <select id="p-cat">
+          <option>Brand Identity</option>
+          <option>Logo Design</option>
+          <option>Packaging</option>
+          <option>Visual System</option>
+          <option>Social Media Design</option>
+          <option>Digital Drawing</option>
+        </select>
+      </div>
+      <div class="form-group"><label>اسم العميل</label><input type="text" id="p-client"/></div>
+      <div class="form-group"><label>السنة</label><input type="number" id="p-year" value="2025" min="2000" max="2030"/></div>
+      <div class="form-group"><label>مميّز؟</label>
+        <select id="p-featured"><option value="0">لا</option><option value="1">نعم</option></select>
+      </div>
+      <div class="form-group" style="grid-column:1/-1"><label>الوصف</label><textarea id="p-desc" rows="3"></textarea></div>
+
+      <!-- ── صور المشروع (متعددة) ── -->
+      <div class="form-group" style="grid-column:1/-1;">
+        <label>صور المشروع <span style="color:var(--hint);font-weight:400;font-size:10px;">(أول صورة = الغلاف)</span></label>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
+          <!-- رفع ملفات -->
+          <label for="p-image" style="
+            display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+            border:2px dashed var(--border);border-radius:10px;padding:18px;
+            cursor:pointer;color:var(--sec);font-size:13px;text-align:center;
+            transition:border-color .2s,background .2s;
+          " onmouseover="this.style.borderColor='var(--pink)';this.style.background='var(--pink-soft)'"
+             onmouseout="this.style.borderColor='var(--border)';this.style.background='transparent'">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
+            </svg>
+            رفع صور من الجهاز<br/>
+            <span style="font-size:10px;color:var(--hint);">JPG, PNG, WEBP — متعددة</span>
+          </label>
+          <input type="file" id="p-image" accept="image/*" multiple style="display:none"
+            onchange="previewImage(this)"/>
+
+          <!-- أو رابط URL -->
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <label style="font-size:11px;color:var(--hint);">أو أضف رابط صورة (URL)</label>
+            <input type="url" id="p-image-url" placeholder="https://..."
+              style="flex:1;padding:11px 14px;border:1.5px solid var(--border);border-radius:9px;
+                     font-size:13px;font-family:inherit;background:var(--bg);color:var(--text);outline:none;"/>
+            <button type="button" onclick="previewUrl(document.getElementById('p-image-url').value)"
+              class="btn-sm" style="align-self:flex-start;">+ إضافة</button>
+          </div>
+        </div>
+
+        <!-- معاينة الصور المختارة -->
+        <div id="p-images-preview" style="display:flex;flex-wrap:wrap;gap:8px;min-height:0;"></div>
+      </div>
+      <div style="grid-column:1/-1;display:flex;gap:12px;">
+        <button type="submit" class="btn-primary">إضافة</button>
+        <button type="button" class="btn-ghost" onclick="closeModal('add-portfolio')">إلغاء</button>
+      </div>
+    </form>
+    <div id="portfolio-form-feedback" class="feedback-msg"></div>
+  </div>
+</div>
+
+<!-- MODAL: Message Detail -->
+<div class="modal-overlay" id="modal-message-detail" onclick="closeModalOut(event)">
+  <div class="modal">
+    <div class="modal-head">
+      <h3>تفاصيل الرسالة</h3>
+      <button class="modal-close" onclick="closeModal('message-detail')">✕</button>
+    </div>
+    <div id="message-detail-content"></div>
+  </div>
+</div>
+
+<script src="admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light" data-lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sondos Art Space</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<div class="loader" id="loader">
+  <div class="loader-logo">
+    <img src="images/logo.png" alt="Sondos Art Space" style="width:100px; height:100px; object-fit:contain;"/>
+  </div>
+  <div class="loader-bar"><div class="loader-fill"></div></div>
+</div>
+
+<nav id="navbar">
+  <a class="nav-logo" href="#">
+    <img src="images/logo.png" alt="Sondos Art Space" style="width:90px; height:90px; object-fit:contain;"/>
+  </a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#home"      data-en="Home"      data-ar="الرئيسية">Home</a></li>
+    <li><a href="#services"  data-en="Services"  data-ar="الخدمات">Services</a></li>
+    <li><a href="#portfolio" data-en="Portfolio" data-ar="الأعمال">Portfolio</a></li>
+    <li><a href="#about"     data-en="About"     data-ar="عني">About</a></li>
+    <li><a href="#contact"   data-en="Contact"   data-ar="التواصل">Contact</a></li>
+  </ul>
+  <div class="nav-controls">
+    <button class="lang-toggle" id="lang-toggle" onclick="toggleLang()" title="Switch Language">
+      <span class="lang-en">EN</span>
+      <span class="lang-sep">/</span>
+      <span class="lang-ar">ع</span>
+    </button>
+    <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" title="Toggle Theme">
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+        <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+      </svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+    </button>
+    <button class="nav-cta" onclick="smoothTo('contact')" data-en="Hire Me" data-ar="وظّفيني">Hire Me</button>
+    <button class="burger" id="burger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-bg-text">SONDOS</div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-dot"></span>
+        <span data-en="Graphic Designer · 6 Years Experience" data-ar="مصممة جرافيك · ٦ سنوات خبرة">Graphic Designer · 6 Years Experience</span>
+      </div>
+      <h1 class="hero-title">
+        <span class="line-1" data-en="Design that" data-ar="تصميم يشبه">Design that</span>
+        <span class="line-2">
+          <em data-en="feels like" data-ar="السحر">feels like</em>
+          <span class="title-accent" data-en="Magic." data-ar="تمامًا.">Magic.</span>
+        </span>
+      </h1>
+      <p class="hero-desc" data-en="I'm Sondos Mohammed — I specialize in logos, visual identities, and product packaging that creates lasting impressions." data-ar="أنا سندس محمد — أتخصص في اللوجوهات والهويات البصرية وتغليف المنتجات التي تترك أثرًا لا يُنسى.">
+        I'm Sondos Mohammed — I specialize in logos, visual identities, and product packaging that creates lasting impressions.
+      </p>
+      <div class="hero-actions">
+        <button class="btn-primary" onclick="smoothTo('portfolio')" data-en="View Portfolio" data-ar="الأعمال">View Portfolio</button>
+        <button class="btn-ghost" onclick="smoothTo('contact')" data-en="Let's Talk" data-ar="تحدّث معي">Let's Talk</button>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card">
+        <div class="hero-card-inner">
+          <img src="images/logo.png" alt="Sondos Art Space" style="width:280px; height:280px; object-fit:contain;"/>
+        </div>
+        <div class="hero-card-badge" data-en="Available for projects" data-ar="متاحة للمشاريع">Available for projects</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll-hint">
+    <div class="scroll-line"></div>
+    <span data-en="Scroll" data-ar="انزل">Scroll</span>
+  </div>
+</section>
+
+<div class="stats-bar" id="stats-bar">
+  <div class="stats-inner" id="stats-inner"></div>
+</div>
+
+<section class="section" id="services">
+  <div class="section-header">
+    <div class="section-label" data-en="What I Do" data-ar="ماذا أقدم">What I Do</div>
+    <h2 class="section-title" data-en="Services" data-ar="الخدمات">Services</h2>
+    <p class="section-sub" data-en="Every project gets the same obsessive attention to craft, from first sketch to final delivery." data-ar="كل مشروع يحظى بنفس الاهتمام المتعمق من الفكرة الأولى حتى التسليم النهائي.">
+      Every project gets the same obsessive attention to craft, from first sketch to final delivery.
+    </p>
+  </div>
+  <div class="services-grid" id="services-grid">
+    <div class="skel"></div><div class="skel"></div><div class="skel"></div><div class="skel"></div>
+  </div>
+</section>
+
+<section class="portfolio-section" id="portfolio">
+  <div class="section-header light">
+    <div class="section-label" data-en="My Work" data-ar="أعمالي">My Work</div>
+    <h2 class="section-title" data-en="Portfolio" data-ar="الأعمال">Portfolio</h2>
+  </div>
+  <div class="portfolio-filters" id="portfolio-filters">
+    <button class="filter-btn active" data-cat="all" onclick="filterPortfolio('all',this)" data-en="All" data-ar="الكل">All</button>
+  </div>
+  <div class="portfolio-grid" id="portfolio-grid">
+    <div class="skel dark"></div><div class="skel dark"></div><div class="skel dark"></div><div class="skel dark"></div>
+  </div>
+</section>
+
+<section class="about-section" id="about">
+  <div class="about-left">
+    <div class="section-label" data-en="About Me" data-ar="عني">About Me</div>
+    <h2 class="section-title" data-en="Hello, I'm Sondos" data-ar="مرحبًا، أنا سندس">Hello, I'm Sondos</h2>
+    <p class="about-body" id="about-body"
+      data-en="A graphic designer with five years of experience in the field. The least that can be said about me is that I am innovative and keep up with developments quickly. I specialize in designing logos, visual identities, and product packaging that is similar to magic. There is no doubt that you will have an exceptional and distinctive experience when you choose me as a partner in success."
+      data-ar="مصممة جرافيك تمتلك خمس سنوات من الخبرة في المجال. أقل ما يُقال عني أنني مبتكرة وأواكب التطورات بسرعة. أتخصص في تصميم اللوجوهات والهويات البصرية وتغليف المنتجات بأسلوب يشبه السحر. لا شك أنك ستحصل على تجربة استثنائية ومميزة حين تختارني شريكًا في النجاح.">
+      A graphic designer with five years of experience in the field. The least that can be said about me is that I am innovative and keep up with developments quickly. I specialize in designing logos, visual identities, and product packaging that is similar to magic.
+    </p>
+    <div class="about-socials" id="about-socials"></div>
+  </div>
+  <div class="about-right">
+    <div class="about-quote-card">
+      <div class="quote-mark">"</div>
+      <p class="quote-text" data-en="When you choose me as a partner in success, you invest in exactly the right place." data-ar="حين تختارني شريكًا في النجاح، فأنت تستثمر في المكان الصحيح تمامًا.">When you choose me as a partner in success, you invest in exactly the right place.</p>
+      <div class="quote-author">
+        <div class="qa-avatar">S</div>
+        <div>
+          <div class="qa-name">Sondos Mohammed</div>
+          <div class="qa-title" data-en="Graphic Designer & Brand Specialist" data-ar="مصممة جرافيك ومتخصصة في الهوية البصرية">Graphic Designer & Brand Specialist</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-section" id="contact">
+  <div class="contact-bg-text">HELLO</div>
+  <div class="contact-inner">
+    <div class="contact-left">
+      <div class="section-label" data-en="Get in Touch" data-ar="تواصل معي">Get in Touch</div>
+      <h2 class="section-title" data-en="Let's Work Together" data-ar="لنعمل معًا">Let's Work Together</h2>
+      <p class="section-sub" data-en="Ready to create something extraordinary? Drop me a message." data-ar="هل أنت مستعد لصنع شيء استثنائي؟ أرسل لي رسالة.">Ready to create something extraordinary? Drop me a message.</p>
+      <div class="contact-links" id="contact-links"></div>
+    </div>
+    <div class="contact-right">
+      <form class="contact-form" id="contact-form" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label data-en="Full Name *" data-ar="الاسم الكامل *">Full Name *</label>
+            <input type="text" id="f-name" data-placeholder-en="Your name" data-placeholder-ar="اسمك" placeholder="Your name" required/>
+          </div>
+          <div class="form-group">
+            <label data-en="Email *" data-ar="البريد الإلكتروني *">Email *</label>
+            <input type="email" id="f-email" data-placeholder-en="your@email.com" data-placeholder-ar="بريدك@مثال.com" placeholder="your@email.com" required/>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label data-en="Phone" data-ar="رقم الهاتف">Phone</label>
+            <input type="tel" id="f-phone" data-placeholder-en="+20 ..." data-placeholder-ar="+20 ..." placeholder="+20 ..."/>
+          </div>
+          <div class="form-group">
+            <label data-en="Service" data-ar="الخدمة">Service</label>
+            <select id="f-service">
+              <option value="" data-en="Select..." data-ar="اختر...">Select...</option>
+              <option value="Logo Design" data-en="Logo Design" data-ar="تصميم لوجو">Logo Design</option>
+              <option value="Visual Identity" data-en="Visual Identity" data-ar="هوية بصرية">Visual Identity</option>
+              <option value="Product Packaging" data-en="Product Packaging" data-ar="تغليف منتجات">Product Packaging</option>
+              <option value="Brand Strategy" data-en="Brand Strategy" data-ar="استراتيجية علامة تجارية">Brand Strategy</option>
+              <option value="Social Media Design" data-en="Social Media Design" data-ar="تصميم سوشال ميديا">Social Media Design</option>
+              <option value="Digital Drawing" data-en="Digital Drawing" data-ar="رسم ديجيتال">Digital Drawing</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label data-en="Message *" data-ar="الرسالة *">Message *</label>
+          <textarea id="f-message" rows="5" data-placeholder-en="Tell me about your project..." data-placeholder-ar="أخبرني عن مشروعك..." placeholder="Tell me about your project..." required></textarea>
+        </div>
+        <button type="submit" class="btn-primary btn-full" id="submit-btn" data-en="Send Message" data-ar="إرسال الرسالة">Send Message</button>
+        <div id="form-feedback"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-logo">
+    <img src="images/logo.png" alt="Sondos Art Space" style="width:80px; height:80px; object-fit:contain;"/>
+    <div>
+      <div class="footer-brand">SONDOS ART SPACE</div>
+      <div class="footer-sub" data-en="Design that feels like magic." data-ar="تصميم يشبه السحر.">Design that feels like magic.</div>
+    </div>
+  </div>
+  <div class="footer-copy" data-en="© 2026 All rights reserved." data-ar="© 2026 جميع الحقوق محفوظة.">© 2026 All rights reserved.</div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
